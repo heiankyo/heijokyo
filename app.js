@@ -1,6 +1,6 @@
 // set port and root directory of www server
 var port = process.argv[2] == undefined ? 80 : process.argv[2];
-var rootdir = process.argv[3] == undefined ? 'build' : process.argv[3];
+var rootdir = process.argv[3] == undefined ? 'src' : process.argv[3];
 
 // express
 var express = require('express');
@@ -10,12 +10,14 @@ var path = require('path');
  
 // all environments
 app.set('port', process.env.PORT || port);
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+//app.use(require('static-favicon'));
+var morgan = require('morgan');
+app.use(morgan( { format: 'dev' } ));
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+//app.use(require('method-override'));
+//app.use(app.router);
 app.use(express.static(path.join(__dirname, rootdir)));
 
 var server = http.createServer(app);

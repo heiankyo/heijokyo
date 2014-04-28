@@ -3,9 +3,8 @@ heijokyo
 
 A web-application that reads the contents of the statement by the movement of the mouth.
 
-How to
+How to run
 ---
-just `npm install` and `node app.js````
-
+Just `npm install` and `node app.js`
 
 

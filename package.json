@@ -9,6 +9,11 @@
 
     "dependencies": {
         "express": "*",
+        "static-favicon": "*",
+        "morgan": "*",
+        "body-parser": "*",
+        "method-override": "*",
+        "body-parser": "*",
         "socket.io": "*"
     },
 
