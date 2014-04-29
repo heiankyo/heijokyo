@@ -8,7 +8,11 @@ $(function () {
 
     var search = function () {
         results = "";
-        socket.emit('search', { text: $('#search_textbox').val() } );
+        var t = $("#search_textbox").val();
+        t = t.replace(/[ぁ-ん]/g, function (s) {
+            return String.fromCharCode(s.charCodeAt(0) + 0x60)
+        });
+        socket.emit('search', { text: t } );
         $('#search_textbox').val(""); 
     };
 
