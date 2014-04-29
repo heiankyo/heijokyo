@@ -14,7 +14,8 @@
         "body-parser": "*",
         "method-override": "*",
         "body-parser": "*",
-        "socket.io": "*"
+        "socket.io": "*",
+        "sqlite3": "*"
     },
 
     "devDependencies": {

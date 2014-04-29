@@ -26,14 +26,41 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+// sqlite
+var sqlite = require('sqlite3')
+var dicdb = new sqlite.Database('dic/dic.sqlite3');
+
 // socket.io
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
 
 io.sockets.on('connection', function (socket) {
     socket.on('word', function (data) {
-        ProcessWord(data);
+        // undone
+        //ProcessWord(data);
     });
 
+    socket.on('search', function (data) {
+        console.log('Got search request: text=' + data['text']);
+        var result =  [];
+        dicdb.each("select * from dic where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 10;", 
+            function (err, row) {
+                if (err) {
+                    console.error("ERROR dicdb : " + err + "\n" + row);
+                    socket.emit("search_error", err);
+                } else {
+                    // debug
+                    //console.log(row);
+                    result.push(row);
+                    socket.emit("search_result", row);
+                }
+            }, function () {
+                //debug
+                console.log("Called dicdb.each#complete");
+                //socket.emit("search_result", result);
+                socket.emit("search_result_end", "")
+            }
+        );
+    });
 });
 
