@@ -3,7 +3,7 @@ $(function () {
     var results = "";
 
     var show_message = function (text) {
-        $("#result").append('<p>' + text + '</p>');
+        $("#result").prepend('<p>' + text + '</p>');
     };
 
     var search = function () {
@@ -12,6 +12,8 @@ $(function () {
         t = t.replace(/[ぁ-ん]/g, function (s) {
             return String.fromCharCode(s.charCodeAt(0) + 0x60)
         });
+        if (t == "")
+            return;
         socket.emit('search', { text: t } );
         $('#search_textbox').val(""); 
     };

@@ -43,7 +43,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('search', function (data) {
         console.log('Got search request: text=' + data['text']);
         var result =  [];
-        dicdb.each("select * from dic where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 10;", 
+        dicdb.each("select * from dic where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 20;", 
             function (err, row) {
                 if (err) {
                     console.error("ERROR dicdb : " + err + "\n" + row);
