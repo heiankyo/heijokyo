@@ -47,7 +47,8 @@ io.sockets.on('connection', function (socket) {
     socket.on('search', function (data) {
         console.log('Got search request: text=' + data['text']);
         var result =  [];
-        dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 20;", 
+        var text = data['text'].replace("\"", "").replace('\'', '');
+        dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + text + "\" order by cost asc limit 20;", 
             function (err, row) {
                 if (err) {
                     console.error("ERROR dicdb : " + err + "\n" + row);
