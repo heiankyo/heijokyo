@@ -1,6 +1,10 @@
 // set port and root directory of www server
 var port = process.argv[2] == undefined ? 80 : process.argv[2];
 var rootdir = process.argv[3] == undefined ? 'src' : process.argv[3];
+// set dictionary table
+// dic: dictionary
+// noun: Noun of dictionary without proper noun
+var dictable = process.argv[4] == undefined ? 'noun' : process.argv[4];
 
 // express
 var express = require('express');
@@ -43,7 +47,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('search', function (data) {
         console.log('Got search request: text=' + data['text']);
         var result =  [];
-        dicdb.each("select * from dic where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 20;", 
+        dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + data['text'] + "\" order by cost asc limit 20;", 
             function (err, row) {
                 if (err) {
                     console.error("ERROR dicdb : " + err + "\n" + row);
