@@ -1,6 +1,6 @@
 // set port and root directory of www server
 var port = process.argv[2] == undefined ? 80 : process.argv[2];
-var rootdir = process.argv[3] == undefined ? 'src' : process.argv[3];
+var rootdir = process.argv[3] == undefined ? 'www' : process.argv[3];
 // set dictionary table
 // dic: dictionary
 // noun: Noun of dictionary without proper noun
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, rootdir)));
 var server = http.createServer(app);
 
 server.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
 // sqlite
