@@ -2,5 +2,4 @@ node_modules
 
 Gruntfile.coffee
 
-#dic/*
-dic2
+dic/*
