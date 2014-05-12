@@ -14,14 +14,11 @@ var path = require('path');
  
 // all environments
 app.set('port', process.env.PORT || port);
-//app.use(require('static-favicon'));
 var morgan = require('morgan');
 app.use(morgan( { format: 'dev' } ));
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-//app.use(require('method-override'));
-//app.use(app.router);
 app.use(express.static(path.join(__dirname, rootdir)));
 
 var server = http.createServer(app);
@@ -34,6 +31,9 @@ server.listen(app.get('port'), function(){
 var sqlite = require('sqlite3')
 var dicdb = new sqlite.Database('dic/dic.sqlite3');
 
+// output
+//var output = require('src/output.js');
+
 // socket.io
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
@@ -41,7 +41,7 @@ io.set('log level', 1);
 io.sockets.on('connection', function (socket) {
     socket.on('word', function (data) {
         // undone
-        //ProcessWord(data);
+        //output.ProcessWord(data);
     });
 
     socket.on('search', function (data) {
