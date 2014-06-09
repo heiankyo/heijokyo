@@ -25,7 +25,7 @@ Specification
 * Detail: clmtrackrを使用して発話者の骨格などの輪郭をビデオから取得し、発話者の口と最も近いと思われるカタカナの文字列を取得します。  
   
 ### `function SearchWord(string vowel, function callback, function endcallback, function errorcallback)`  
-* Description: 文字列をサーバーに送信して検索するようリクエストします。  
+* Description: 文字列をサーバーに送信して検索するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。  
 * Arguments:  
     * `string vowel`: 送信する単語。通常、ひらがなまたはカタカナを指定します。漢字、英数字や記号を指定すると検索できません。  
     * `function callback( { } )`: 検索結果を受信した時に呼び出される関数。ハッシュ配列は、インデックスに辞書のテーブル、コンテントに結果が入ります。この関数は複数の検索結果があるときは複数回呼び出されます。  
@@ -41,22 +41,52 @@ socket.on("search_result", callback);
 socket.on("search_result_end", callback);
 socket.on("search_error", errorcallback);
 socket.emit("search", vowel);`
-この関数はサーバーに送信する前に前回のコールバックの登録を解除します。
+この関数はサーバーに送信する前に前回のコールバックの登録を解除します。  
+また、ひらがなはカタカナに変換されます。
 
+### function EmitWord(string vowel, function callback, function endcallback, function errorcallback)
+* Description: 文字列をサーバーに送信してサーバー側で何かを実行するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。
+* Arguments: `SearchWord` を参照のこと。
+ * Detail: この関数は上の `SearchWord` とは検索したあとに何かを実行するという点で異なります。それ以外は同じです。
 
-0|surface_form|text|0||0
-1|left_id|int|0||0
-2|right_id|int|0||0
-3|cost|int|0||0
-4|pos0|text|0||0
-5|pos1|text|0||0
-6|pos2|text|0||0
-7|pos3|text|0||0
-8|inflected_forms|text|0||0
-9|utilizing_type|text|0||0
-10|original_form|text|0||0
-11|reading|text|0||0
-12|pronunciation|text|0||0
-13|vowel_reading|text|0||0
-14|vowel_pronunciation|text|0||0
+## Server
+### socket.io
+#### `search( { text: vowel} )`
+* Description: 指定した文字列を検索し、検索結果をクライアントに返します。  
+* Arguments:  
+    * vowel: 検索する文字列。通常、カタカナを指定します。漢字、英数字や記号を指定すると検索できません。  
+* Returns: `{ reading, vowel_reading, ... }`: SQLite3 の辞書を検索した結果。 `Dictionary` 参照。  
+* Detail: 指定した文字列を `dic/dic.sqlite3` から検索し、検索結果をクライアントに返します。戻り値はハッシュ配列として Nodejs の `sqlite3` モジュールから直接返された配列を返します。  
+
+#### `word( { text: vowel } )`
+* Description: 指定した文字列を検索し、検索結果をクライアントに返し、検索結果をもとになにか実行します。  
+* Arguments: `search` に同じ。  
+* Returns: `search` に同じ。  
+* Detail: `search` に同じ。ただし、検索結果をもとになにか実行する点では異なります。  
+
+### Output
+#### `function output.ProcessWord(hash data)`
+* Description: 指定した辞書の行から処理をします。
+* Arguments: `data`: `{ reading, vowel_reading, ... }` のようなハッシュ配列で指定する辞書の行。
+* Returns: `int`: 0=成功, 任意の整数値=失敗
+* Detail: none
+
+### Dictionary
+#### Columns
+|0|surface_form|text|
+|1|left_id|int|
+|2|right_id|int|
+|3|cost|int|
+|4|pos0|text|
+|5|pos1|text|
+|6|pos2|text|
+|7|pos3|text|
+|8|inflected_forms|text|
+|9|utilizing_type|text|
+|10|original_form|text|
+|11|reading|text|
+|12|pronunciation|text|
+|13|vowel_reading|text|
+|14|vowel_pronunciation|text|
+
 
