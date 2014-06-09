@@ -34,13 +34,13 @@ Specification
 * Returns:  
     * `int`: `0`: 成功, `1`: 失敗  
 * Detail: この関数は文字列をサーバーに送信して、サーバーが検索し、検索結果をコールバックします。具体的には、次のコードを実行します。  
-`socket.removeListener("search_result", SearchWordLastCallback);
-socket.removeListener("search_end", SearchWordLastEndCallback)
-socket.removeListener("search_error", SearchWordLastErrorCallback)
+``socket.removeListener("search_result", SearchWordLastCallback);  
+socket.removeListener("search_end", SearchWordLastEndCallback);
+socket.removeListener("search_error", SearchWordLastErrorCallback);
 socket.on("search_result", callback);
 socket.on("search_result_end", callback);
 socket.on("search_error", errorcallback);
-socket.emit("search", vowel);`
+socket.emit("search", vowel);``
 この関数はサーバーに送信する前に前回のコールバックの登録を解除します。  
 また、ひらがなはカタカナに変換されます。
 
