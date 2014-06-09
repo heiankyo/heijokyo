@@ -1,38 +1,38 @@
 Specification
 ===
   
-* Client
-`function AnalyzeImage(Image image)`
-Description:  
+## Client
+### `function AnalyzeImage(Image image)`  
+#### Description:  
     画像を解析して、母音を取得します。  
-Arguments:  
+#### Arguments:  
     Image image:  
         解析する画像を指定します。  
-Returns:  
+#### Returns:  
     string vowel:  
         カタカナの母音を返します。  
-Detail:  
+#### Detail:  
     clmtrackrを使用して発話者の骨格などの輪郭を画像から取得し、発話者の口と最も近いと思われるカタカナの文字列を取得します。  
   
-`function AnalyzeVideoStreamFromWebCam()`  
-Description:  
+### `function AnalyzeVideoStreamFromWebCam()`  
+#### Description:  
     WebCamストリームをソースとして、母音を取得します。  
-Arguments:  
+#### Arguments:  
     none  
-Returns:  
+#### Returns:  
     string vowel:  
         カタカナの母音を返します。  
-Detail:  
+#### Detail:  
     clmtrackrを使用して発話者の骨格などの輪郭をWebCamストリームから取得し、発話者の口と最も近いと思われるカタカナの文字列を取得します。  
   
-`function AnalyzeStaticVideo()`  
-Description:  
+### `function AnalyzeStaticVideo()`  
+#### Description:  
     ビデオをソースとして、母音を取得します。  
-Arguments:  
+#### Arguments:  
     none  
-Returns:  
+#### Returns:  
     string: カタカナの母音を返します。  
-Detail:  
+#### Detail:  
     clmtrackrを使用して発話者の骨格などの輪郭をビデオから取得し、発話者の口と最も近いと思われるカタカナの文字列を取得します。  
   
 `function SearchWord(string vowel, function callback)`  
