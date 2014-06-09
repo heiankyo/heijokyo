@@ -73,8 +73,9 @@ socket.emit("search", vowel);`
 
 ### Dictionary
 #### Columns
+
 |number|name|type|
-|:--|--|--:|
+|--:|:--|:--|
 |0|surface_form|text|
 |1|left_id|int|
 |2|right_id|int|
