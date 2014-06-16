@@ -28,7 +28,7 @@ Specification
 * Description: 文字列をサーバーに送信して検索するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。  
 * Arguments:  
     * `string vowel`: 送信する単語。通常、ひらがなまたはカタカナを指定します。漢字、英数字や記号を指定すると検索できません。  
-    * `function callback( { } )`: 検索結果を受信した時に呼び出される関数。ハッシュ配列は、インデックスに辞書のテーブル、コンテントに結果が入ります。この関数は複数の検索結果があるときは複数回呼び出されます。  
+    * `function callback( . )`: 検索結果を受信した時に呼び出される関数。メンバ変数として返されます。この関数は複数の検索結果があるときは複数回呼び出されます。  
     `function endcallback()`: すべての検索結果の送信が終わった時に呼び出される関数。  
     * `function errorcallback(err)`: 検索できなかった時に呼び出される関数。 `err` には、 Nodejs の `sqlite3` モジュールの `err` が入ります。  
 * Returns:  
@@ -55,7 +55,7 @@ Specification
 * Description: 指定した文字列を検索し、検索結果をクライアントに返します。  
 * Arguments:  
     * vowel: 検索する文字列。通常、カタカナを指定します。漢字、英数字や記号を指定すると検索できません。  
-* Returns: `{ reading, vowel_reading, ... }`: SQLite3 の辞書を検索した結果。 `Dictionary` 参照。  
+* Returns: `{ . }`: SQLite3 の辞書を検索した結果。 `Dictionary` 参照。  
 * Detail: 指定した文字列を `dic/dic.sqlite3` から検索し、検索結果をクライアントに返します。戻り値はハッシュ配列として Nodejs の `sqlite3` モジュールから直接返された配列を返します。  
 
 #### `word( { text: vowel } )`
@@ -67,7 +67,7 @@ Specification
 ### Output
 #### `function output.ProcessWord(hash data)`
 * Description: 指定した辞書の行から処理をします。
-* Arguments: `data`: `{ reading, vowel_reading, ... }` のようなハッシュ配列で指定する辞書の行。
+* Arguments: `data`: `{ . }` メンバ変数で指定する辞書の行。
 * Returns: `int`: 0=成功, 任意の整数値=失敗
 * Detail: none
 
