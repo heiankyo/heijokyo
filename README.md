@@ -15,7 +15,7 @@ Requires
 Troubleshooting
 ---
 * Can't find sqlite3 module  
-    Would you run on 64-bit PC?
+    on 64-bit PC?
     Type `npm install sqlite3 --target_arch=x64` to install sqlite3 64-bit version
 
 
