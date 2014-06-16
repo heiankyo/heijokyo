@@ -1,4 +1,4 @@
-var Dictionary = function (search_callback, search_endcallback, search_errorcallback) {
+var dictionary = function (search_callback, search_endcallback, search_errorcallback) {
     var socket = io.connect();
     socket.on('connect', function () {
         console.log('socket.io connected');

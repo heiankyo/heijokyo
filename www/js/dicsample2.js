@@ -6,7 +6,7 @@ $(function () {
     };
 
     /*var socket = io.connect(); */
-    var dic = new Dictionary(
+    var dic = new dictionary(
     /* callback */
         function (d) {
             if (d != undefined && d.surface_form != undefined)

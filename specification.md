@@ -24,30 +24,34 @@ Specification
     `string`: カタカナの母音を返します。  
 * Detail: clmtrackrを使用して発話者の骨格などの輪郭をビデオから取得し、発話者の口と最も近いと思われるカタカナの文字列を取得します。  
   
-### `function SearchWord(string vowel, function callback, function endcallback, function errorcallback)`  
+### `class dictionary(function callback, function endcallback, function errorcallback)`
+* Description: 辞書を使用するための関数を提供します。
+* Arguments:
+    * `function search_callback( . )` 検索結果を受信した時に呼び出される関数。メンバ変数として返されます。この関数は複数の検索結果があるときは複数回呼び出されます。  
+    * `function endcallback()`: すべての検索結果の送信が終わった時に呼び出される関数。  
+    * `function errorcallback(err)`: 検索できなかった時に呼び出される関数。 `err` には、 Nodejs の `sqlite3` モジュールの `err` が入ります。  
+* Usage:  
+    var dic = new dictionary(  
+        function (d) { $('#output').prepend(d.surface_form); },  
+        function () { $('#output').prepend('finished!'); },  
+        function (d) { $('#output').prepend('ERROR! ', d); });  
+    dic.SearchWord('うい');  
+  
+#### `function SearchWord(string vowel)`  
 * Description: 文字列をサーバーに送信して検索するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。  
 * Arguments:  
     * `string vowel`: 送信する単語。通常、ひらがなまたはカタカナを指定します。漢字、英数字や記号を指定すると検索できません。  
-    * `function callback( . )`: 検索結果を受信した時に呼び出される関数。メンバ変数として返されます。この関数は複数の検索結果があるときは複数回呼び出されます。  
-    `function endcallback()`: すべての検索結果の送信が終わった時に呼び出される関数。  
-    * `function errorcallback(err)`: 検索できなかった時に呼び出される関数。 `err` には、 Nodejs の `sqlite3` モジュールの `err` が入ります。  
 * Returns:  
     * `int`: `0`: 成功, `1`: 失敗  
 * Detail: この関数は文字列をサーバーに送信して、サーバーが検索し、検索結果をコールバックします。具体的には、次のコードを実行します。  
-    socket.removeListener("search_result", SearchWordLastCallback);  
-    socket.removeListener("search_end", SearchWordLastEndCallback);  
-    socket.removeListener("search_error", SearchWordLastErrorCallback);  
-    socket.on("search_result", callback);  
-    socket.on("search_result_end", callback);  
-    socket.on("search_error", errorcallback);  
-    socket.emit("search", vowel);  
-この関数はサーバーに送信する前に前回のコールバックの登録を解除します。  
-また、ひらがなはカタカナに変換されます。
+   socket.emit("search", vowel);  
+ひらがなはカタカナに変換されます。
 
-### function EmitWord(string vowel, function callback, function endcallback, function errorcallback)
+#### `function EmitWord(string vowel, function callback, function endcallback, function errorcallback)`
 * Description: 文字列をサーバーに送信してサーバー側で何かを実行するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。
 * Arguments: `SearchWord` を参照のこと。
- * Detail: この関数は上の `SearchWord` とは検索したあとに何かを実行するという点で異なります。それ以外は同じです。
+ * Detail: この関数は上の `SearchWord` とは検索したあとに何かを実行するという点で異なります。それ以外は同じです。具体的には、次のコードを実行します。  
+    socket.emit("word", vowel);
 
 ## Server
 ### socket.io
