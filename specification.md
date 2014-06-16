@@ -31,7 +31,7 @@ Specification
     * `function endcallback()`: すべての検索結果の送信が終わった時に呼び出される関数。  
     * `function errorcallback(err)`: 検索できなかった時に呼び出される関数。 `err` には、 Nodejs の `sqlite3` モジュールの `err` が入ります。  
 * Usage:  
-
+  
     var dic = new dictionary(  
         function (d) { $('#output').prepend(d.surface_form); },  
         function () { $('#output').prepend('finished!'); },  
