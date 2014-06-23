@@ -71,7 +71,6 @@ var dicprocess = function (socket, mode, data) {
 
 io.sockets.on('connection', function (socket) {
     for (var i = 0; i < modes.length; i++) {
-        console.log(modes[i]);
         socket.on(modes[i], function (data) { dicprocess(socket, modes[i], data); });
     }
 });
