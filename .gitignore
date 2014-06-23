@@ -3,3 +3,5 @@ node_modules
 Gruntfile.coffee
 
 dic/*
+secret/*
+
