@@ -48,7 +48,7 @@ Specification
    socket.emit("search", vowel);  
 ひらがなはカタカナに変換されます。
 
-#### `function EmitWord(string vowel, function callback, function endcallback, function errorcallback)`
+#### `function EmitWord(string vowel)`
 * Description: 文字列をサーバーに送信してサーバー側で何かを実行するようリクエストします。これには socket.io を使い、可能ならば WebSocket 通信を行います。
 * Arguments: `SearchWord` を参照のこと。
  * Detail: この関数は上の `SearchWord` とは検索したあとに何かを実行するという点で異なります。それ以外は同じです。具体的には、次のコードを実行します。  
