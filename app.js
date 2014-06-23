@@ -47,8 +47,10 @@ var dicprocess = function (socket, mode, data) {
     }
     console.log('Got search request: text=' + data['text']);
     var text = data['text'];
-    dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + 
-            text + "\" order by cost asc limit 20;", 
+    dicdb.each("select distinct * from " + dictable + " where " + 
+            "vowel_pronunciation = \"" + text + "\" or " +
+            "vowel_reading = \"" + text + "\" " +
+            "order by cost asc limit 30;", 
         function (err, row) {
             if (err) {
                 console.error("ERROR dicdb : " + err + "\n" + row);
