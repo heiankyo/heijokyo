@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> 円 </title>
+    <link href='css/dicsample.css'> <!-- 見た目（デコレーション） -->
+</head>
+
+<body charset='utf-8'>
+	<h2>fillRect()</h2>
+	<canvas id="c1" width="140" height="140"></canvas>
+	<h2>strokeRect()</h2>
+	<canvas id="c2" width="140" height="140"></canvas>
+	<h2>clearRect()</h2>
+	<canvas id="c3" width="140" height="140"></canvas>
+	
+<script>
+	onload = function() {
+	  draw1();
+	  draw2();
+	  draw3();
+	};
+	/* 円を描く */
+	function draw1() {
+	  var canvas = document.getElementById('c1');
+	  if ( ! canvas || ! canvas.getContext ) { return false; }
+	  var ctx = canvas.getContext('2d');
+	  ctx.beginPath();
+	  ctx.arc(70, 70, 60, 0, Math.PI*2, false);
+	  ctx.stroke();
+	}
+	/* 円弧を描く */
+	function draw2() {
+	  var canvas = document.getElementById('c2');
+	  if ( ! canvas || ! canvas.getContext ) { return false; }
+	  var ctx = canvas.getContext('2d');
+	  ctx.beginPath();
+	  ctx.arc(70, 70, 60, 10 * Math.PI / 180, 80 * Math.PI / 180, true);
+	  ctx.stroke();
+	}
+	/* 円弧を塗りつぶす */
+	function draw3() {
+	  var canvas = document.getElementById('c3');
+	  if ( ! canvas || ! canvas.getContext ) { return false; }
+	  var ctx = canvas.getContext('2d');
+	  ctx.beginPath();
+	  ctx.arc(70, 70, 60, 10 * Math.PI / 180, 80 * Math.PI / 180, true);
+	  ctx.fill();
+	}
+</script>
+</body>
+</html>
