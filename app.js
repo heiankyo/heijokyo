@@ -37,40 +37,42 @@ var dicdb = new sqlite.Database('dic/dic.sqlite3');
 // socket.io
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
+var modes = [ 'word', 'search' ];
+
+var dicprocess = function (socket, mode, data) {
+    switch (data['text']) {
+        case "\"":
+        case "\'":
+            return
+    }
+    console.log('Got search request: text=' + data['text']);
+    var text = data['text'];
+    dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + 
+            text + "\" order by cost asc limit 20;", 
+        function (err, row) {
+            if (err) {
+                console.error("ERROR dicdb : " + err + "\n" + row);
+                socket.emit("search_error", err);
+            } else {
+                // debug
+                //console.log(row);
+                socket.emit("search_result", row);
+            }
+        }, function () {
+            //debug
+            console.log("Called dicdb.each#complete");
+            socket.emit("search_result_end", "")
+        }
+    );
+
+    if (mode == 'word')
+        output.ProcessWord();
+}
 
 io.sockets.on('connection', function (socket) {
-    socket.on('word', function (data) {
-        // undone
-        //output.ProcessWord(data);
-    });
-
-    socket.on('search', function (data) {
-        switch (data['text']) {
-            case "\"":
-            case "\'":
-                return
-        }
-        console.log('Got search request: text=' + data['text']);
-        var result =  [];
-        var text = data['text'];
-        dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + text + "\" order by cost asc limit 20;", 
-            function (err, row) {
-                if (err) {
-                    console.error("ERROR dicdb : " + err + "\n" + row);
-                    socket.emit("search_error", err);
-                } else {
-                    // debug
-                    //console.log(row);
-                    result.push(row);
-                    socket.emit("search_result", row);
-                }
-            }, function () {
-                //debug
-                console.log("Called dicdb.each#complete");
-                //socket.emit("search_result", result);
-                socket.emit("search_result_end", "")
-            }
-        );
-    });
+    for (var i = 0; i < modes.length; i++) {
+        console.log(modes[i]);
+        socket.on(modes[i], function (data) { dicprocess(socket, modes[i], data); });
+    }
 });
 
