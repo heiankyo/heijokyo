@@ -45,9 +45,14 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('search', function (data) {
+        switch (data['text']) {
+            case "\"":
+            case "\'":
+                return
+        }
         console.log('Got search request: text=' + data['text']);
         var result =  [];
-        var text = data['text'].replace("\"", "").replace('\'', '');
+        var text = data['text'];
         dicdb.each("select * from " + dictable + " where vowel_pronunciation = \"" + text + "\" order by cost asc limit 20;", 
             function (err, row) {
                 if (err) {
