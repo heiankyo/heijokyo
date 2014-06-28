@@ -7,6 +7,13 @@ How to run
 ---
 Just `npm install` and `node app.js [port-number [www-root-directory [dictionary-table-name]]]`
 
+`port-number` gives port number which listen HTTP and WebSocket server. Usually, port 1 to 1023 need root privilege.
+`www-root-directory` gives HTTP root directory.
+`dictionary-table-name` gives a table name of dic.sqlite3. You can select below.
+* dic: all POS (noun., verb., adj. and so on)
+* noun: nouns only (excluding proper nouns)
+* fruit: names of some fruits (including "何時")
+
 Requires
 ---
 * node.js
