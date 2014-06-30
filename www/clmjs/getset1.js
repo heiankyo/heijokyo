@@ -3,7 +3,7 @@ function getset1(){
 			animate();
 			positions1 = ctrack.getCurrentPosition();
 			
-			hiragana="";
+			katakana="";
 			
 			console.log("基準値をセットしました");
 			//mathfuncja(positions1);

@@ -28,22 +28,22 @@ function getset2(){
 			var verti3=verti23-verti13;
 
 			if(verti1>3　&& horiz1>-1 && horiz1<1){
-			hiragana +="あ";
+			katakana +="ア";
 			//console.log("あ");
 			}else if(horiz1<0 && verti2>-0.25 && verti2<0.25){
-			hiragana +="う";
+			katakana +="ウ";
 			//console.log("う");
 			}else if(horiz1<0 && verti1>1){
-			hiragana +="お";
+			katakana +="オ";
 			//console.log("お");
 			}else if(horiz1>0){
-			hiragana +="い";
+			katakana +="イ";
 			//console.log("い");
 			}else{
-			hiragana +="え";
+			katakana +="エ";
 			//console.log("え");
 }
 
-console.log(hiragana);
+console.log(katakana);
 
 }
