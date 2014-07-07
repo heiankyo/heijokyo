@@ -2,18 +2,54 @@
 <html>
 <head>
     <title>heijokyo</title>
-    <link href='css/dicsample.css'>
+    <link rel='stylesheet' href='css/bootstrap.min.css'>
+    <!-- <link href='css/bootstrap-theme.min.css'> -->
+    <link rel='stylesheet' href='css/index.css'>
 </head>
 <body charset='utf-8'>
-    <a href="dicsample.html">dicsample</a><br>
-    <a href="dicsample2.html">dicsample2</a><br>
-    <a href="a.html">静止画から</a><br>
-    <a href="clm_video.html">WebCamから</a><br>
+    <div class='site-wrapper'>
+        <div class='site-wrapper-inner'>
+            <div class='cover-container'>
+                <div class='masthead clearfix'>
+                    <div class='inner'>
+                        <h3 class='masthead-brand'>heijokyo</h3>
+                        <ul class='nav masthead-nav'>
+                            <li class='active'><a href="#">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
 
+                <div class='inner cover'>
+                    <h1 class='cover-heading'>heijokyo</h1>
+                    <p class='lead'>口の動きから母音を検出して、話者が何を言っているのかを推測します</p>
+                    <p class='lead'>
+                        <a href='picture.html' class='btn btn-lg btn-default'>写真から</a>
+                        <a href='webcam.html' class='btn btn-lg btn-default'>WebCam から</a>
+                    </p>
+                </div>
+
+                <hr>
+
+                <div class='inner cover'>
+                    <h2 class='cover-heading'>辞書検索</h2>
+                    <p class='lead'>サーバの辞書から直接検索します</p>
+                    <p class='lead'>
+                        <a href="dicsample2.html" class='btn btn-lg btn-default'>検索</a>
+                    </p>
+                </div>
+                
+                <div class='bottom'>
+                    <div class='credit'>
+                        <p>
+                        <a href='http://getbootstrap.com/examples/cover/'>Cover</a> template for <a href='http://getbootstrap.com/'>Bootstrap</a>, by <a href='https://twitter.com/mdo'>@mdo</a>.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src='js/jquery-2.1.0.min.js'></script>
-    <script src='js/clmtrackr.min.js'></script>
-    <script src='/socket.io/socket.io.js'></script>
-    <script src='js/dic.js'></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
 
