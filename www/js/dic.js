@@ -19,22 +19,22 @@ var dictionary = function (search_callback, search_endcallback, search_errorcall
     socket.on("search_result_end", search_endcallback);
     socket.on("search_error", search_errorcallback);
 
-    var _EmitWord = function (mode, vowel) {
+    var _EmitWord = function (mode, vowel, table) {
         /* check */
         if (vowel == "")
             return 1;
         vowel = HiraganaToKatakana(vowel);
-        socket.emit(mode, { text: vowel } );
+        socket.emit(mode, { text: vowel, table: table} );
         return 0;
     };
 
 
-    this.EmitWord = function (vowel) {
-        return _EmitWord("word", vowel);
+    this.EmitWord = function (vowel, table = undefined) {
+        return _EmitWord("word", vowel, table);
     };
     
-    this.SearchWord = function (vowel) {
-        return _EmitWord("search", vowel);
+    this.SearchWord = function (vowel, table = undefined) {
+        return _EmitWord("search", vowel, table);
     };
 };
 

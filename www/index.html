@@ -34,10 +34,13 @@
 
                 <div class='inner cover'>
                     <h2 class='cover-heading'>辞書検索</h2>
-                    <p class='lead'>サーバの辞書から直接検索します</p>
-                    <p class='lead'>
-                        <a href="dicsample2.html" class='btn btn-lg btn-default'>検索</a>
-                    </p>
+                    <p class='lead'>サーバの辞書（下に指定したテーブル（noun, dic, fruit））から直接検索します</p>
+                    <div class='lead form-group'>
+                        <input type='text' id='search_table' class='form-control' placeholder='テーブル' />
+                        <input type='text' id='search_textbox' class='form-control' placeholder='検索したい単語' />
+                        <button id='search_button' class='btn btn-default form-control'>検索検索ゥ♪</button>
+                        <p id='result' class='lead'></div>
+                    </div>
                 </div>
                 
                 <br>
@@ -65,6 +68,9 @@
     </div>
     <script src='js/jquery-2.1.0.min.js'></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src="js/dic.js"></script>
+    <script src='js/dicsample2.js'></script>
 </body>
 </html>
 

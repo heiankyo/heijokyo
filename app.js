@@ -39,15 +39,25 @@ var io = require('socket.io').listen(server);
 io.set('log level', 1);
 var modes = [ 'word', 'search' ];
 
-var dicprocess = function (socket, mode, data) {
-    switch (data['text']) {
+var replace_escape_char = function (word) {
+    if (word == undefined)
+        return "";
+    switch (word) {
         case "\"":
         case "\'":
-            return
+            return "";
     }
+    return word.replace('\"', '').replace('\'', '');
+};
+
+var dicprocess = function (socket, mode, data) {
     console.log('Got search request: text=' + data['text']);
-    var text = data['text'];
-    dicdb.each("select distinct * from " + dictable + " where " + 
+    var text = replace_escape_char(data['text']);
+    var dictable_text = replace_escape_char(data['table']);
+    if (dictable_text == "")
+        dictable_text = dictable;
+
+    dicdb.each("select distinct * from " + dictable_text + " where " + 
             "vowel_pronunciation = \"" + text + "\" or " +
             "vowel_reading = \"" + text + "\" " +
             "order by cost asc limit 30;", 

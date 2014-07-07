@@ -1,4 +1,3 @@
-
 $(function () {
     var results = "";
     var show_message = function (text) {
@@ -16,7 +15,7 @@ $(function () {
         function (d) {
             console.log("endcallback");
             if (results == "")
-                results = "(Not found)";
+                results = "(そんなのないよ ありえない)";
             show_message(results);
             results = "";
         },
@@ -27,22 +26,25 @@ $(function () {
         }
     );
 
-    var search = function () {
+    var search = function (table) {
         results = "";
         var t = $("#search_textbox").val();
         if (t == "") return;
-        
-        dic.SearchWord(t);
+        results = t + ": ";
+        dic.SearchWord(t, table);
         $('#search_textbox').val("");
     };
 
     $('#search_button').click(function () {
-        search();
+        search($('#search_table').val());
     });
  
     $("#search_textbox").keypress(function (e) {
         if (e.which == 13)
-            search();
+            search($('#search_table').val());
     });
+
+    $("#search_table").val("noun");
+
 });
 
