@@ -114,12 +114,12 @@
 			</div>
 			<br/>
 			<input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
-			<input type="button" class="btn" value="set" onclick="getset1()"></input>
+			<input type="button" class="btn" value="「え」の顔をセット" onclick="getset1()"></input>
 			
-			<input type="button" class="btn" value="start" onclick="getset2()"></input>
+			<input type="button" class="btn" value="記録" onclick="getset2()"></input>
 			
-			<input type="button" class="btn" value="output" onclick="OutputButtonClicked()"></input>
-			<input type="button" class="btn" value="reset" onclick="OutputButtonClicked1()"></input>
+			<input type="button" class="btn" value="母音から単語を検索" onclick="OutputButtonClicked()"></input>
+			<input type="button" class="btn" value="リセット" onclick="OutputButtonClicked1()"></input>
 			
 			<div id="results">
 			</div>
@@ -139,8 +139,9 @@
 				
 				function enablestart() {
 					var startbutton = document.getElementById('startbutton');
-					startbutton.value = "start";
+					startbutton.value = "トラッキング開始";
 					startbutton.disabled = null;
+                    startVideo();
 				}
 				
 				var insertAltVideo = function(video) {
@@ -235,7 +236,7 @@
 					function (d) {
 						console.log("endcallback");
 						if (results == "")
-							results = "(Not found)";
+							results = "(そんなのないよ ありえない♪)";
 						show_message(results);
 						results = "";
 					},

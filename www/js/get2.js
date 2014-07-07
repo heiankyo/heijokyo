@@ -44,6 +44,9 @@ function getset2(){
 			}else{
 			katakana +="オ";
 			//console.log("え");
+			
+			show_message(katakana);
+			
 }
 
 console.log(katakana);
