@@ -47,3 +47,4 @@ function getset2(){
 console.log(katakana);
 
 }
+}
