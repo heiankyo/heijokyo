@@ -32,7 +32,8 @@ var sqlite = require('sqlite3')
 var dicdb = new sqlite.Database('dic/dic.sqlite3');
 
 // output
-//var output = require('src/output.js');
+require('date-utils');
+var output = require('./src/output.js');
 
 // socket.io
 var io = require('socket.io').listen(server);
@@ -67,7 +68,8 @@ var dicprocess = function (socket, mode, data) {
                 socket.emit("search_error", err);
             } else {
                 // debug
-                //console.log(row);
+                row.answer = output.ProcessWord(row.surface_form);
+                
                 socket.emit("search_result", row);
             }
         }, function () {
@@ -77,8 +79,8 @@ var dicprocess = function (socket, mode, data) {
         }
     );
 
-    if (mode == 'word')
-        output.ProcessWord();
+    //if (mode == 'word')
+    //    output.ProcessWord();
 }
 
 io.sockets.on('connection', function (socket) {

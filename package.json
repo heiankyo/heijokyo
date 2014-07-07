@@ -16,7 +16,8 @@
         "body-parser": "*",
         "socket.io": "*",
         "sqlite3": "*",
-        "serialport": "*"
+        "serialport": "*",
+        "date-utils": "*"
     }
 
 

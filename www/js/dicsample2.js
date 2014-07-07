@@ -10,14 +10,22 @@ $(function () {
     var dic = new dictionary(
     /* callback */
         function (d) {
-            if (d != undefined && d.surface_form != undefined)
-                results += d.surface_form + " ";
+            if (d != undefined) {
+                if (d.surface_form != undefined)
+                    results += d.surface_form + " ";
+                if (d.answer != undefined) {
+                    results += "「" + d.answer + "」 ";
+                    speak('ja', d.answer);
+                }
+            }
         }, 
         /* endcallback */
         function (d) {
             console.log("endcallback");
-            if (results == last_search_string)
+            if (results == last_search_string) {
                 results = "(そんなのないよ ありえない)";
+                speak('ja', results);
+            }
             show_message(results);
             results = "";
         },
@@ -34,7 +42,7 @@ $(function () {
         if (t == "") return;
         results = t + ": ";
         last_search_string = results;
-        dic.SearchWord(t, table);
+        dic.EmitWord(t, table);
         $('#search_textbox').val("");
     };
 

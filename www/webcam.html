@@ -95,7 +95,8 @@
 		
 		<script src="./js/jquery-2.1.0.min.js"></script>
 		<script src='/socket.io/socket.io.js'></script>
-		<script src="./js/dic.js"></script>
+        <script src="js/speak.js"></script>
+        <script src="./js/dic.js"></script>
 		
 		<script src="./js/mathfunc.js"></script>
 		<script src="./js/get1.js"></script>
@@ -121,8 +122,11 @@
 			<input type="button" class="btn" value="母音から単語を検索" onclick="OutputButtonClicked()"></input>
 			<input type="button" class="btn" value="リセット" onclick="OutputButtonClicked1()"></input>
 			
-			<div id="results">
+			<div id="result">
 			</div>
+
+            <div id="speaker">
+            </div>
 			
 			<script>
 				var vid = document.getElementById('videoel');
@@ -181,8 +185,8 @@
 						vid.play();
 					}, function() {
 						insertAltVideo(vid);
-						document.getElementById('gum').className = "hide";
-						document.getElementById('nogum').className = "nohide";
+						//document.getElementById('gum').className = "hide";
+						//document.getElementById('nogum').className = "nohide";
 						alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
 					});
 				} else {
@@ -221,22 +225,32 @@
 				// initialize dictionary instance
 				//
 				var results = "";
+                var last_search_string = "";
+
 				var show_message = function (text) {
-					$("#results").prepend('<p>' + text + '</p>');
+					$("#result").prepend('<p>' + text + '</p>');
 				};
 
 				/*var socket = io.connect(); */
 				var dic = new dictionary(
 				/* callback */
 					function (d) {
-						if (d != undefined && d.surface_form != undefined)
-							results += d.surface_form + " ";
-					}, 
+                        if (d != undefined) {
+                            if (d.surface_form != undefined)
+                                results += d.surface_form + " ";
+                            if (d.answer != undefined) {
+                                results += "「" + d.answer + "」 ";
+                                speak('ja', d.answer);
+                            }
+                        }			
+                    }, 
 					/* endcallback */
 					function (d) {
 						console.log("endcallback");
-						if (results == "")
+						if (results == last_search_string) {
 							results = "(そんなのないよ ありえない♪)";
+                            speak('ja', results);
+                        }
 						show_message(results);
 						results = "";
 					},

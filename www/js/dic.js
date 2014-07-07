@@ -29,11 +29,11 @@ var dictionary = function (search_callback, search_endcallback, search_errorcall
     };
 
 
-    this.EmitWord = function (vowel, table = undefined) {
+    this.EmitWord = function (vowel, table) {
         return _EmitWord("word", vowel, table);
     };
     
-    this.SearchWord = function (vowel, table = undefined) {
+    this.SearchWord = function (vowel, table) {
         return _EmitWord("search", vowel, table);
     };
 };
