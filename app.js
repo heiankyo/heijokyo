@@ -1,10 +1,10 @@
 // set port and root directory of www server
-var port = process.argv[2] == undefined ? 80 : process.argv[2];
+var port = process.argv[2] == undefined ? 3000 : process.argv[2];
 var rootdir = process.argv[3] == undefined ? 'www' : process.argv[3];
 // set dictionary table
 // dic: dictionary
 // noun: Noun of dictionary without proper noun
-var dictable = process.argv[4] == undefined ? 'noun' : process.argv[4];
+var dictable = process.argv[4] == undefined ? 'fruit' : process.argv[4];
 
 // express
 var express = require('express');
