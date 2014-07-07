@@ -1,5 +1,7 @@
 $(function () {
+    var last_search_string = '';
     var results = "";
+
     var show_message = function (text) {
         $("#result").prepend('<p>' + text + '</p>');
     };
@@ -14,7 +16,7 @@ $(function () {
         /* endcallback */
         function (d) {
             console.log("endcallback");
-            if (results == "")
+            if (results == last_search_string)
                 results = "(そんなのないよ ありえない)";
             show_message(results);
             results = "";
@@ -31,6 +33,7 @@ $(function () {
         var t = $("#search_textbox").val();
         if (t == "") return;
         results = t + ": ";
+        last_search_string = results;
         dic.SearchWord(t, table);
         $('#search_textbox').val("");
     };

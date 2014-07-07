@@ -34,7 +34,15 @@
 
                 <div class='inner cover'>
                     <h2 class='cover-heading'>辞書検索</h2>
-                    <p class='lead'>サーバの辞書（下に指定したテーブル（noun, dic, fruit））から直接検索します</p>
+                    <p class='lead'>サーバの辞書（下に指定したテーブル（noun, dic, fruit））から母音をもとに単語を検索します<br>
+                    「検索したい単語」にひらがなかカタカナの母音を入れてください</p>
+                    <table class='lead'>
+                        <tr><td>dic</td><td>すべての品詞の単語</td></tr>
+                        <tr><td>noun</td><td>名詞</td></tr>
+                        <tr><td>fruit</td><td>果物と「何時」</td></tr>                  
+                    </table>
+                    <p class='lead'>例：あうい、うい、おおい</p>
+
                     <div class='lead form-group'>
                         <input type='text' id='search_table' class='form-control' placeholder='テーブル' />
                         <input type='text' id='search_textbox' class='form-control' placeholder='検索したい単語' />
