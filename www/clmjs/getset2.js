@@ -22,10 +22,10 @@ function getset2(){
 			var verti22=positions2[58][1]-positions2[59][1];
 			var verti23=positions2[56][1]-positions2[61][1];
 
-			var horiz1=horiz21-horiz11;
-			var verti1=verti21-verti11;
-			var verti2=verti22-verti12;
-			var verti3=verti23-verti13;
+			var horiz1=horiz21/horiz11;
+			var verti1=verti21/verti11;
+			var verti2=verti22/verti12;
+			var verti3=verti23/verti13;
 
 			if(verti1>3　&& horiz1>-1 && horiz1<1){
 			katakana +="ア";
@@ -39,10 +39,10 @@ function getset2(){
 			}else if(horiz1>0){
 			katakana +="イ";
 			//console.log("い");
-			}else{
-			katakana +="エ";
+			//}else{
+			//katakana +="エ";
 			//console.log("え");
-}
+//}
 
 console.log(katakana);
 

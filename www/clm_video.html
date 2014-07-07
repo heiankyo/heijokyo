@@ -132,6 +132,7 @@
 			<input type="button" class="btn" value="start" onclick="getset2()"></input>
 			
 			<input type="button" class="btn" value="output" onclick="OutputButtonClicked()"></input>
+			<input type="button" class="btn" value="reset" onclick="OutputButtonClicked1()"></input>
 			
 			<div id="results">
 			</div>
@@ -263,6 +264,13 @@
 					
 					dic.SearchWord(katakana);
 					
+				}
+				
+				function OutputButtonClicked1() {
+					// emit word to socket.io server
+					
+					katakana="";
+					console.log("文字列を初期化しました");
 				}
 			</script>
 		</div>
