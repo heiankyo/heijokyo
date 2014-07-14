@@ -3,7 +3,9 @@ speak = function (lang, text) {
     var enctext = 'q=' + encodeURI(text);
     var enclang = 'tl=' + encodeURI(lang);
     console.log(uri + enclang + '&' + enctext);
-    
+    //window.open(uri + enclang + '&' + enctext, 'speak', 'width=100, height=100');
+
+   
     var base;
 	var obj;
 
@@ -25,6 +27,7 @@ speak = function (lang, text) {
 	obj.src = uri + enclang + '&' + enctext;
 	// IFRAME を実装
 	base.appendChild(obj);
+    
     /*
     $(this).jPlayer('setMedia', {
         title: 'gspeak',
@@ -33,6 +36,6 @@ speak = function (lang, text) {
         swfPath: 'js'
     }).jPlayer('play');
     */
-    return this;
+    return false;
 };
 
