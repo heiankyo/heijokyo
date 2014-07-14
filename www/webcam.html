@@ -118,7 +118,7 @@
 			<input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
 			<input type="button" class="btn" value="「え」の顔をセット" onclick="getset1()"></input>
 			
-			<input type="button" class="btn" value="記録" onclick="getset2()"></input>
+			<input type="button" class="btn" value="母音の検出" onclick="getset2()"></input>
 			
 			<input type="button" class="btn" value="母音から単語を検索" onclick="OutputButtonClicked()"></input>
 			<input type="button" class="btn" value="リセット" onclick="OutputButtonClicked1()"></input>
@@ -187,8 +187,8 @@
 						vid.play();
 					}, function() {
 						insertAltVideo(vid);
-						//document.getElementById('gum').className = "hide";
-						//document.getElementById('nogum').className = "nohide";
+						document.getElementById('gum').className = "hide";
+						document.getElementById('nogum').className = "nohide";
 						alert("There was some problem trying to fetch video from your webcam, using a fallback video instead.");
 					});
 				} else {
@@ -275,6 +275,7 @@
 					
 					katakana="";
 					console.log("文字列を初期化しました");
+					show_message("文字列を初期化しました");
 				}
 			</script>
 		</div>
