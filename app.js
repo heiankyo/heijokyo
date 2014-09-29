@@ -6,6 +6,15 @@ var rootdir = process.argv[3] == undefined ? 'www' : process.argv[3];
 // noun: Noun of dictionary without proper noun
 var dictable = process.argv[4] == undefined ? 'fruit' : process.argv[4];
 
+var portname = process.argv[5] == undefined ? '/dev/ttyUSB0' : process.argv[5];
+
+/* debug: write current environments */
+console.log('www port: ' + port);
+console.log('www rootdir: ' + rootdir);
+console.log('dictable: ' + dictable);
+console.log('serial port file name: ' + portname);
+console.log('');
+
 // express
 var express = require('express');
 var http = require('http');
@@ -32,8 +41,9 @@ var sqlite = require('sqlite3')
 var dicdb = new sqlite.Database('dic/dic.sqlite3');
 
 // output
-require('date-utils');
+//require('date-utils');
 var output = require('./src/output.js');
+output.Open(portname, { });
 
 // socket.io
 var io = require('socket.io').listen(server);
