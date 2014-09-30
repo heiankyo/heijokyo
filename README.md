@@ -5,11 +5,12 @@ A web-application that reads the contents of the statement by the movement of th
 
 How to run
 ---
-Just `npm install` and `node app.js [port-number [www-root-directory [dictionary-table-name]]]`
+Just `npm install` and `node app.js [port-number [www-root-directory [dictionary-table-name [serial-port-name]]]]`
 
 `port-number` gives port number which listen HTTP and WebSocket server. Usually, port 1 to 1023 need root privilege. Default is 3000.  
 `www-root-directory` gives HTTP root directory. Default is '`www`'.  
 `dictionary-table-name` gives a table name of dic.sqlite3. You can select below. Default is '`fruit`'  
+`serial-port-name` gives serial port file name which send signal to PIC such as `/dev/ttyUSB0`. Default is `/dev/ttyUSB0`.  
 * dic: all POS (noun., verb., adj. and so on)
 * noun: nouns only (excluding proper nouns)
 * fruit: names of some fruits (including "何時")
