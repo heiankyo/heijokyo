@@ -43,7 +43,7 @@ var dicdb = new sqlite.Database('dic/dic.sqlite3');
 // output
 //require('date-utils');
 var output = require('./src/output.js');
-output.Open(portname, { });
+output.Open(portname, { baudrate: 460800 });
 
 // socket.io
 var io = require('socket.io').listen(server);

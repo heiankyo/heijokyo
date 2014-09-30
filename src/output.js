@@ -51,7 +51,7 @@ var ProcessWord = function(text) {
                 write(text);
             /* answer time */
             var dt = new Date();
-            return dt.toFormat('現在の時刻はHH24時MI分SS秒です。');
+            return ('現在の時刻は' + dt.getHours() +'時' + dt.getMinutes() + '分' + dt.getSeconds() + '秒です。');
     }
 
     return undefined;
