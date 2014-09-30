@@ -9,11 +9,14 @@ Just `npm install` and `node app.js [port-number [www-root-directory [dictionary
 
 `port-number` gives port number which listen HTTP and WebSocket server. Usually, port 1 to 1023 need root privilege. Default is 3000.  
 `www-root-directory` gives HTTP root directory. Default is '`www`'.  
-`dictionary-table-name` gives a table name of dic.sqlite3. You can select below. Default is '`fruit`'  
-`serial-port-name` gives serial port file name which send signal to PIC such as `/dev/ttyUSB0`. Default is `/dev/ttyUSB0`.  
+`dictionary-table-name` gives default table name of dic.sqlite3. You can select below. Default is '`fruit`'  
 * dic: all POS (noun., verb., adj. and so on)
 * noun: nouns only (excluding proper nouns)
 * fruit: names of some fruits (including "何時")
+`serial-port-name` gives serial port file name which send signal to PIC such as `/dev/ttyUSB0`. Default is `/dev/ttyUSB0`.  
+  
+Example:  
+`node app.js 80 www noun /dev/ttyUSB0`  
 
 Requires
 ---
