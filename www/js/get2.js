@@ -31,17 +31,17 @@ function getset2(){
 			katakana +="ア";
 			//console.log("あ");
 			}else if(horiz1<-1 && verti2<-1){
-			katakana +="オ";
+			katakana +="ウ";
 			//console.log("う");
 			}else if(horiz1<0 && verti1>-1 && verti1<1){
-			katakana +="ウ";
+			katakana +="オ";
 			//console.log("お");
 			}else if(horiz1>3){
 			katakana +="イ";
 			//console.log("い");
 			//}else if(horiz1>-0.5&&horiz1<0.5&&verti1<-2){
 			//katakana +="ン";
-			}else if(-1<=horiz1&&horiz1<=1&&-1<=verti1&&verti1<=1&&-1<=verti2&&verti2<=1){
+			}else if(-4<=horiz1&&horiz1<=4&&-4<=verti1&&verti1<=4&&-4<=verti2&&verti2<=4){
 			katakana +="エ";
 			}else{
 			katakana +="オ";
