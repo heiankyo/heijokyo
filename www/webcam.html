@@ -119,9 +119,11 @@
 			<input type="button" class="btn" value="「え」の顔をセット" onclick="getset1()"></input>
 			
 			<input type="button" class="btn" value="母音の検出" onclick="getset2()"></input>
-			
+			<input type="button" class="btn" value="一文字削除" onclick="deleteButton()"></input>
 			<input type="button" class="btn" value="母音から単語を検索" onclick="OutputButtonClicked()"></input>
+			
 			<input type="button" class="btn" value="リセット" onclick="OutputButtonClicked1()"></input>
+			
 			
 			<div id="result">
 			</div>
@@ -277,6 +279,11 @@
 					console.log("文字列を初期化しました");
 					show_message("文字列を初期化しました");
 				}
+				
+				function deleteButton(){
+					katakana=katakana.slice(0, -1);
+					show_message("現在の文字列は"+katakana);
+					}
 			</script>
 		</div>
 	</body>
